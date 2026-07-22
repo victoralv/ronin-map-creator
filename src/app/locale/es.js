@@ -15,6 +15,8 @@ let translations = {
       fromMap: "Seleccionar en mapa",
       fromImage: "Crear desde una imagen",
     },
+    themeDark: "Oscuro",
+    themeLight: "Claro",
   },
   mapImageForm: {
     inputLabel: "Seleccionar mapa",
