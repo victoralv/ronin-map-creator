@@ -81,6 +81,16 @@ table.map-creator-grid .map-grid-element-container .map-grid-element-content {
   top: initial;
 }
 
+body.dark .map-creator-map-creator-controls .ol-geocoder input {
+  background-color: #333333;
+  color: #ffffff;
+  border-color: #666666;
+}
+
+body.dark .map-creator-map-creator-controls .ol-geocoder input::placeholder {
+  color: #aaaaaa;
+}
+
 .map-creator-map-creator-map-container .ol-tooltip {
   position: relative;
   background: rgba(0, 0, 0, 0.8);
@@ -117,6 +127,15 @@ table.map-creator-grid .map-grid-element-container .map-grid-element-content {
   bottom: -6px;
   margin-left: -7px;
   left: 50%;
+}
+
+body.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body.dark .border-bottom {
+  border-color: #444444 !important;
 }
 
 .map-creator-map-creator-map-container .ol-tooltip-static:before {
