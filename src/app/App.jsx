@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////
 
 // STANDARD
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from "react-i18next";
 import { ButtonGroup, Button } from "react-bootstrap";
 
@@ -29,6 +29,16 @@ function App() {
   const [originType, setOriginType] = useState(originTypes.fromMap);
   const [mapImage, setMapImage] = useState(null);
   const [mapToDownload, setMapToDownload] = useState(null);
+  const [darkTheme, setDarkTheme] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('theme') === 'dark';
+  });
+
+  // Theme
+  useEffect(() => {
+    document.documentElement.setAttribute('data-bs-theme', darkTheme ? 'dark' : 'light');
+    document.body.classList.toggle('dark', darkTheme);
+  }, [darkTheme]);
 
   // Variables
   let number = "0";
@@ -46,10 +56,18 @@ function App() {
   const onLoadMapCreator = function({ mapRef, getMapInfo }) {
     setMapToDownload({ mapRef, getMapInfo });
   };
+  const onToggleDarkTheme = function() {
+    setDarkTheme(prev => !prev);
+  };
 
   // Render
   return (
     <>
+      <div style={{ position: 'fixed', top: '12px', right: '16px', zIndex: 9999 }}>
+        <Button variant={darkTheme ? 'light' : 'dark'} size="sm" onClick={onToggleDarkTheme}>
+          {darkTheme ? t('app.themeLight') : t('app.themeDark')}
+        </Button>
+      </div>
       <Block title={t('app.step', { number: number = succ(number) })} subtitle={t('app.stepSelectOrigin')}>
         <ButtonGroup>
           <Button variant={originType == originTypes.fromMap ? "primary" : "secondary"} onClick={onClickOriginTypeFromMap}>
